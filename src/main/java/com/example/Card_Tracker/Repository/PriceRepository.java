@@ -13,6 +13,8 @@ import java.util.List;
 @Repository
 public interface PriceRepository extends JpaRepository<Price, Long>{
 
+
+
     @Query("SELECT p FROM Price p WHERE p.card.cardId = :cardId " +
             "AND (:psa10 IS NULL OR p.psa10 IS NOT NULL) " +
             "AND (:psa9 IS NULL OR p.psa9 IS NOT NULL) " +
@@ -24,10 +26,10 @@ public interface PriceRepository extends JpaRepository<Price, Long>{
     List<Price> findPricesByCardIdAndConditions(
             @Param("cardId") Long cardId,
             @Param("psa10") Boolean psa10,
-            @Param("psa9") Long psa9,
+            @Param("psa9") Boolean psa9,
             @Param("mn") Boolean mn,
             @Param("lp") Boolean lp,
-            @Param("mp") Long mp,
+            @Param("mp") Boolean mp,
             @Param("dmg") Boolean dmg
 
 

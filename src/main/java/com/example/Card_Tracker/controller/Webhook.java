@@ -69,7 +69,7 @@ public class Webhook {
 
         if (xEbaySignature == null) {
             logger.warn("Missing X-Ebay-Signature header in webhook request");
-            // Still return 200 OK to acknowledge receipt, as required by eBay
+
             return ResponseEntity.ok(new HashMap<>());
         }
 
@@ -80,7 +80,7 @@ public class Webhook {
             return ResponseEntity.ok(new HashMap<>());
         } else {
             // IMPORTANT: Still return 200 OK to acknowledge receipt
-            // eBay requires 200 OK response even if processing fails
+
             return ResponseEntity.ok(new HashMap<>());
         }
     }

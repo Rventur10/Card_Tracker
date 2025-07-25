@@ -18,12 +18,12 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long>{
     boolean existsByName(String name);
 
     //Find names that contain a string
-    List<Pokemon> findByNameContainingIgnoreeCase(String nameFragment);
+    List<Pokemon> findByNameContainingIgnoreCase(String nameFragment);
 
     //Find all sorted asc
-    List<Pokemon> findAllByOrderedByNameAsc();
+    List<Pokemon> findAllByOrderByNameAsc();
 
     //Find all sorted dec
-    List<Pokemon> findAllByOrderedByNameDesc();
+    List<Pokemon> findAllByOrderByNameDesc();
 
 }
