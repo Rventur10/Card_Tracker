@@ -27,7 +27,7 @@ public interface PriceRepository extends JpaRepository<Price, Long>{
             @Param("cardId") Long cardId,
             @Param("psa10") Boolean psa10,
             @Param("psa9") Boolean psa9,
-            @Param("mn") Boolean mn,
+            @Param("nm") Boolean nm,
             @Param("lp") Boolean lp,
             @Param("mp") Boolean mp,
             @Param("dmg") Boolean dmg

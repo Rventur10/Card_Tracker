@@ -18,7 +18,8 @@ public interface CardRepository extends JpaRepository<Card, Long>{
     Optional<Card> findByPokemonNameAndSetNumber(@Param("pokemonName") String pokemonName, @Param("setNumber") String setNumber);
 
     // Name only
-    List<Card> findByPokemonName(String pokemonName);
+    @Query("SELECT c FROM Card c WHERE c.pokemon.name = :pokemonName")
+    List<Card> findByPokemonName(@Param("pokemonName") String pokemonName);
 
 
     // I case I need to search by ID

@@ -16,8 +16,8 @@ public class TCGPlayerController {
     }
 
     @GetMapping("/TCGPlayer")
-    public void navigateToTCGPlayer() {
-        tcgPlayerService.navigateToTCGPlayer();
+    public void initializeBrowser() {
+        tcgPlayerService.initializeBrowser();
     }
 
     @GetMapping("/closeBrowser")
