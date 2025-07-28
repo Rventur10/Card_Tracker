@@ -14,7 +14,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "set_id")
-    private Set cardSet; // renamed from 'set' to avoid confusion with Java's Set interface
+    private Set cardSet;
 
     private String setNumber;
     private String priceURL;

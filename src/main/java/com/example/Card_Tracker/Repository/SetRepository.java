@@ -18,9 +18,6 @@ public interface SetRepository extends JpaRepository<Set, String> {
     @Query("SELECT s FROM Set s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
     List<Set> findByNameContainingIgnoreCase(@Param("nameFragment") String nameFragment);
 
-    // Sets by total cards range
-    @Query("SELECT s FROM Set s WHERE s.totalCards BETWEEN :min AND :max")
-    List<Set> findByTotalCardsRange(@Param("min") int min, @Param("max") int max);
 
     // All sets ordered A-Z
     @Query("SELECT s FROM Set s ORDER BY s.name ASC")

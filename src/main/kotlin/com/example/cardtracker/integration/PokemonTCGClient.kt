@@ -29,17 +29,7 @@ class PokemonClient(
         }
     }
 
-    /**
-     * Gets a specific card by its set number
-     * @param setId The set ID
-     * @param number The card number (e.g. "12/102")
-     * @return The matching card or null if not found
-     */
-    fun getCardBySetNumber(setId: String, number: String): CardDataDTO? {
-        logger.debug("Looking for card $number in set $setId")
-        return pokemonTcgService.getCardsFromSet(setId)
-            .firstOrNull { it.setNumber == number }
-    }
+
 
     /**
      * Gets all available sets (cached)
@@ -53,28 +43,4 @@ class PokemonClient(
         }
     }
 
-    /**
-     * Gets a specific set by ID
-     * @param setId The set ID (e.g. "swsh12")
-     * @return The matching set or null if not found
-     */
-    fun getSetById(setId: String): CardSetDTO? {
-        logger.debug("Looking for set with ID: $setId")
-        return getAllSets().firstOrNull { it.setId == setId }
-    }
-
-    /**
-     * Gets all cards for a specific Pokémon
-     * @param pokemonName The Pokémon name (e.g. "Charizard")
-     * @return List of all cards featuring this Pokémon
-     */
-    fun getCardsByPokemon(pokemonName: String): List<CardDataDTO> {
-        logger.info("Fetching all cards for Pokémon: $pokemonName")
-        return getAllSets().flatMap { set ->
-            pokemonTcgService.getCardsFromSet(set.setId)
-                .filter { it.extractPokemonName()?.equals(pokemonName, ignoreCase = true) ?: false }
-        }.also {
-            logger.debug("Found ${it.size} cards for $pokemonName")
-        }
-    }
 }

@@ -257,7 +257,6 @@ public class EbayWebhookService {
         try {
             JsonNode payloadJson = objectMapper.readTree(payload);
 
-            // Since we don't store eBay user data, we just acknowledge receipt
             // This satisfies eBay's compliance requirements
             if (payloadJson.has("notification") &&
                     payloadJson.get("notification").has("data") &&

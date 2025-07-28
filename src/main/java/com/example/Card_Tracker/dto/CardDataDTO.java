@@ -73,13 +73,7 @@ public class CardDataDTO {
         this.images = images;
     }
 
-    // Validation
-    public boolean isValidCard() {
-        return name != null && !name.trim().isEmpty() &&
-                set != null && set.getName() != null && !set.getName().trim().isEmpty() &&
-                setNumber != null && !setNumber.trim().isEmpty() &&
-                pokemonTcgId != null && !pokemonTcgId.trim().isEmpty();
-    }
+
 
     @Override
     public String toString() {
@@ -92,21 +86,7 @@ public class CardDataDTO {
     }
 
     // Helper methods
-    public String extractPokemonName() {
-        if (name == null || name.trim().isEmpty()) {
-            return null;
-        }
 
-        String pokemonName = name.trim();
-        String[] suffixes = {" V", " VMAX", " VSTAR", " ex", " GX", " Prime", " BREAK", " Tag Team"};
-
-        for (String suffix : suffixes) {
-            if (pokemonName.endsWith(suffix)) {
-                return pokemonName.substring(0, pokemonName.length() - suffix.length()).trim();
-            }
-        }
-        return pokemonName;
-    }
 
     @Override
     public boolean equals(Object o) {

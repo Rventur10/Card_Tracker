@@ -18,14 +18,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
          @Param("setNumber") String setNumber
  );
 
- // Position-only search: "Charizard 4" (ignores denominator)
- @Query("SELECT c FROM Card c WHERE " +
-         "c.pokemon.name = :pokemonName AND " +
-         "SUBSTRING(c.setNumber, 1, LOCATE('/', c.setNumber) - 1) = :position")
- List<Card> findByPokemonNameAndPosition(
-         @Param("pokemonName") String pokemonName,
-         @Param("position") String position
- );
 
  // All cards in a set (ordered by position)
  @Query("SELECT c FROM Card c WHERE c.cardSet.set_Id = :setId " +
