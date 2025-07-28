@@ -1,35 +1,35 @@
 package com.example.Card_Tracker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) // Used for prices
 public class Card {
     @Id
-
     private Long cardId;
 
     @ManyToOne
     @JoinColumn(name = "pokemon_id")
     private Pokemon pokemon;
 
-    private String setNumber; //The way to identify all cards of the same pokemon. Used in Ebay searches
+    @ManyToOne
+    @JoinColumn(name = "set_id")
+    private Set cardSet; // renamed from 'set' to avoid confusion with Java's Set interface
+
+    private String setNumber;
+    private String priceURL;
     private String imageURL;
 
     // Default constructor
     public Card() {}
 
     // Public constructor
-    public Card(String setNumber, Pokemon pokemon, String imageURL) {
+    public Card(Long cardId, String setNumber, Pokemon pokemon, Set cardSet, String imageURL) {
+        this.cardId = cardId;
         this.setNumber = setNumber;
-        this.imageURL = imageURL;
         this.pokemon = pokemon;
+        this.cardSet = cardSet;
+        this.imageURL = imageURL;
     }
 
     // Getters
@@ -38,15 +38,11 @@ public class Card {
     }
 
     public Pokemon getPokemon() {
-        return pokemon; // Returns the full Pokemon object
+        return pokemon;
     }
 
-    public Long getPokemonId() {
-        return pokemon.getPokemon_Id(); // Returns just the Pokemon ID for sorting/mapping
-    }
-
-    public String getPokemonName() {
-        return pokemon.getName(); // Returns just the Pokemon name for eBay searches
+    public Set getCardSet() {
+        return cardSet;
     }
 
     public String getSetNumber() {
@@ -55,6 +51,10 @@ public class Card {
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public String getPriceURL() {
+        return priceURL;
     }
 
     // Setters
@@ -66,11 +66,28 @@ public class Card {
         this.pokemon = pokemon;
     }
 
+    public void setCardSet(Set cardSet) {
+        this.cardSet = cardSet;
+    }
+
     public void setSetNumber(String setNumber) {
         this.setNumber = setNumber;
     }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public void setPriceURL(String priceURL) {
+        this.priceURL = priceURL;
+    }
+
+    // Convenience methods
+    public String getSetName() {
+        return cardSet != null ? cardSet.getName() : null;
+    }
+
+    public int getSetTotalCards() {
+        return cardSet != null ? cardSet.getTotalCards() : 0;
     }
 }

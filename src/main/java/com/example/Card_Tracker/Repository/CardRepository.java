@@ -9,20 +9,38 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CardRepository extends JpaRepository<Card, Long>{
+public interface CardRepository extends JpaRepository<Card, Long> {
 
+ // Exact match: "Charizard 4/102" (matches full setNumber string)
+ @Query("SELECT c FROM Card c WHERE c.pokemon.name = :pokemonName AND c.setNumber = :setNumber")
+ Optional<Card> findByPokemonNameAndSetNumber(
+         @Param("pokemonName") String pokemonName,
+         @Param("setNumber") String setNumber
+ );
 
+ // Position-only search: "Charizard 4" (ignores denominator)
+ @Query("SELECT c FROM Card c WHERE " +
+         "c.pokemon.name = :pokemonName AND " +
+         "SUBSTRING(c.setNumber, 1, LOCATE('/', c.setNumber) - 1) = :position")
+ List<Card> findByPokemonNameAndPosition(
+         @Param("pokemonName") String pokemonName,
+         @Param("position") String position
+ );
 
-   //search by name and set i.e. Charizard 4/102
-    @Query("SELECT c FROM Card c WHERE c.pokemon.name = :pokemonName AND c.setNumber = :setNumber")
-    Optional<Card> findByPokemonNameAndSetNumber(@Param("pokemonName") String pokemonName, @Param("setNumber") String setNumber);
+ // All cards in a set (ordered by position)
+ @Query("SELECT c FROM Card c WHERE c.cardSet.set_Id = :setId " +
+         "ORDER BY CAST(SUBSTRING(c.setNumber, 1, LOCATE('/', c.setNumber) - 1) AS int)")
+ List<Card> findBySetIdOrdered(@Param("setId") String setId);
 
-    // Name only
-    @Query("SELECT c FROM Card c WHERE c.pokemon.name = :pokemonName")
-    List<Card> findByPokemonName(@Param("pokemonName") String pokemonName);
+ // All versions of a Pokemon (across all sets)
+ @Query("SELECT c FROM Card c WHERE c.pokemon.name = :pokemonName")
+ List<Card> findByPokemonName(@Param("pokemonName") String pokemonName);
 
+ // Cards by Pokemon ID
+ @Query("SELECT c FROM Card c WHERE c.pokemon.pokemon_Id = :pokemonId")
+ List<Card> findByPokemonId(@Param("pokemonId") Long pokemonId);
 
-    // I case I need to search by ID
-    @Query("SELECT c FROM Card c WHERE c.pokemon.pokemon_Id = :pokemonId")
-    List<Card> findByPokemonId(@Param("pokemonId") Long pokemonId);
+ // Fuzzy name search
+ @Query("SELECT c FROM Card c WHERE LOWER(c.pokemon.name) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
+ List<Card> searchByNameContaining(@Param("nameFragment") String nameFragment);
 }
