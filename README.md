@@ -1,10 +1,10 @@
 # Pokémon Card Price Tracker
 
 ## Collection Application
-With the explosive growth of the Pokémon trading card market, I've found bulk buying at conventions to be the most effective way to expand my collection. This Spring Boot application modernizes my original trading card tracker to help optimize purchasing decisions at conventions by aggregating pricing data from multiple sources.
+With the craziness of the recent Pokémon trading card market, I’ve found that bulk buying collections is the best way to grow my collection. This Spring Boot application updates my original trading card tracker.
 
 ## Business Application
-This updated version will be written in Java and Kotlin via the Spring Boot framework. I plan to find the raw prices and sales volumes via TCGPlayer (PokemonTCG API) and the gradded counte parts via eBay API. Ebay will also be the backbone for finding the volume of sales.
+This updated version will be written in Java and Kotlin via the Spring Boot framework. I plan to find the raw prices via TCGPlayer (PokemonTCG API) and the gradded counter parts and the sales volume via eBay API. .
 
 
 ## Architecture & Technology Stack
