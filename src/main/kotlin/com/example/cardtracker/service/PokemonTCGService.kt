@@ -94,7 +94,6 @@ class PokemonTcgService(
         return HttpEntity<String>(headers)
     }
 
-    // Enhanced response class to handle pagination
     private data class PokemonApiResponse(
         @JsonProperty("data") val data: List<CardDataDTO> = emptyList(),
         @JsonProperty("count") val count: Int = 0,

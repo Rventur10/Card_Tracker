@@ -31,6 +31,8 @@ public class CardDataDTO {
         this.images = images;
     }
 
+
+
     // Getters
     public String getName() {
         return name;
@@ -52,6 +54,12 @@ public class CardDataDTO {
         return images != null ? images.getSmall() : null;
     }
 
+    public CardSetDTO getSet() {
+        return set;
+    }
+
+
+
     // Setters
     public void setName(String name) {
         this.name = name;
@@ -72,7 +80,9 @@ public class CardDataDTO {
     public void setImages(CardImagesDTO images) {
         this.images = images;
     }
-
+    public CardImagesDTO getImages() {
+        return images;
+    }
 
 
     @Override
