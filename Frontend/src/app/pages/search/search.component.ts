@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-search',
   imports: [],
-  templateUrl: './search.html',
-  styleUrl: './search.css'
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.css'
 })
 export class Search {
 

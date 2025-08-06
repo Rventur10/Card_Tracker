@@ -4,8 +4,6 @@ import com.example.Card_Tracker.Repository.CardRepository;
 import com.example.Card_Tracker.model.Card;
 import com.example.Card_Tracker.model.Pokemon;
 import com.example.Card_Tracker.model.Set;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -32,8 +30,6 @@ class CardControllerTest {
     @Autowired
     private CardRepository cardRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     private Card testCard;
     private Pokemon testPokemon;

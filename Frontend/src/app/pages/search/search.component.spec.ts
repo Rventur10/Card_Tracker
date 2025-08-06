@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardGrid } from './card-grid';
+import { Search } from './search.component';
 
-describe('CardGrid', () => {
-  let component: CardGrid;
-  let fixture: ComponentFixture<CardGrid>;
+describe('Search', () => {
+  let component: Search;
+  let fixture: ComponentFixture<Search>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardGrid]
+      imports: [Search]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardGrid);
+    fixture = TestBed.createComponent(Search);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
