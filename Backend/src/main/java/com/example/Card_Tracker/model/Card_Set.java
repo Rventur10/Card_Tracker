@@ -2,8 +2,9 @@ package com.example.Card_Tracker.model;
 
 import jakarta.persistence.*;
 
-@Entity
-public class Set {
+@Entity(name = "Card_Set")
+@Table(name = "card_set")
+public class Card_Set {
     @Id
     private String set_Id; // same as pokemonTCG ID
 
@@ -13,10 +14,10 @@ public class Set {
     private int totalCards;
 
     // Default constructor
-    public Set() {}
+    public Card_Set() {}
 
     // Public constructors
-    public Set(String set_Id, String name, int totalCards) {
+    public Card_Set(String set_Id, String name, int totalCards) {
         this.set_Id = set_Id;
         this.name = name;
         this.totalCards = totalCards;

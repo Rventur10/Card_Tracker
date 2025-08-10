@@ -2,6 +2,7 @@ package com.example.Card_Tracker.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
+import com.example.Card_Tracker.model.Card_Set;
 
 public class CardDataDTO {
     @JsonProperty("name")
@@ -27,6 +28,7 @@ public class CardDataDTO {
         this.name = name;
         this.set = set;
         this.setNumber = setNumber;
+
         this.pokemonTcgId = pokemonTcgId;
         this.images = images;
     }
@@ -120,13 +122,18 @@ public class CardDataDTO {
         @JsonProperty("id")
         private String setId;
 
-        public String getName() {
-            return name;
-        }
+        @JsonProperty("total") // or whatever the API field is called
+        private int totalCards;
+
+        public String getName() {return name;}
 
         public void setName(String name) {
             this.name = name;
         }
+
+        public void  setTotalCards(int total) { this.totalCards = total;}
+
+        public int getTotalCards(){return totalCards;}
 
         public String getSetId() {
             return setId;
@@ -135,6 +142,9 @@ public class CardDataDTO {
         public void setSetId(String setId) {
             this.setId = setId;
         }
+
+
+
     }
 
     public static class CardImagesDTO {

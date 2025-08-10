@@ -1,5 +1,24 @@
 <div>
   <h1>{{ title }}</h1>
   <p>{{ message }}</p>
-  <p>If you can see this, your dashboard component is working correctly!</p>
+  
+  <div *ngIf="loading">
+    <p>Loading Pokemon sets...</p>
+  </div>
+  
+  <div *ngIf="error">
+    <p style="color: red;">{{ error }}</p>
+  </div>
+  
+  <div *ngIf="!loading && !error">
+    <h2>Available Pokemon Sets ({{ sets.length }})</h2>
+    <div *ngFor="let set of sets" style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+      <h3>{{ set.name }}</h3>
+      <p><strong>ID:</strong> {{ set.id }}</p>
+      <p><strong>Series:</strong> {{ set.series }}</p>
+      <p><strong>Release Date:</strong> {{ set.releaseDate }}</p>
+      <p><strong>Total Cards:</strong> {{ set.total }}</p>
+      <button (click)="loadCardsFromSet(set.id)">Load Cards from this Set</button>
+    </div>
+  </div>
 </div>

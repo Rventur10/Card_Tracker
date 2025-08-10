@@ -14,7 +14,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "set_id")
-    private Set cardSet;
+    private Card_Set cardSet;
 
     private String setNumber;
     private String priceURL;
@@ -24,7 +24,7 @@ public class Card {
     public Card() {}
 
     // Public constructor
-    public Card(Long cardId, String setNumber, Pokemon pokemon, Set cardSet, String imageURL) {
+    public Card(Long cardId, String setNumber, Pokemon pokemon, Card_Set cardSet, String imageURL) {
         this.cardId = cardId;
         this.setNumber = setNumber;
         this.pokemon = pokemon;
@@ -41,7 +41,7 @@ public class Card {
         return pokemon;
     }
 
-    public Set getCardSet() {
+    public Card_Set getCardSet() {
         return cardSet;
     }
 
@@ -66,7 +66,7 @@ public class Card {
         this.pokemon = pokemon;
     }
 
-    public void setCardSet(Set cardSet) {
+    public void setCardSet(Card_Set cardSet) {
         this.cardSet = cardSet;
     }
 
@@ -87,7 +87,5 @@ public class Card {
         return cardSet != null ? cardSet.getName() : null;
     }
 
-    public int getSetTotalCards() {
-        return cardSet != null ? cardSet.getTotalCards() : 0;
-    }
+
 }

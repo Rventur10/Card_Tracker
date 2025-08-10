@@ -3,7 +3,7 @@ package com.example.Card_Tracker.controller;
 import com.example.Card_Tracker.Repository.CardRepository;
 import com.example.Card_Tracker.model.Card;
 import com.example.Card_Tracker.model.Pokemon;
-import com.example.Card_Tracker.model.Set;
+import com.example.Card_Tracker.model.Card_Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,7 +33,7 @@ class CardControllerTest {
 
     private Card testCard;
     private Pokemon testPokemon;
-    private Set testSet;
+    private Card_Set testSet;
 
     @org.springframework.boot.test.context.TestConfiguration
     static class TestConfig {
@@ -49,7 +49,7 @@ class CardControllerTest {
         testPokemon = new Pokemon("Charizard");
         testPokemon.setPokemon_Id(1L);
 
-        testSet = new Set("base1", "Base Set", 102);
+        testSet = new Card_Set("base1", "Base Set", 102);
 
         testCard = new Card(1L, "4/102", testPokemon, testSet, "http://example.com/image.jpg");
 
