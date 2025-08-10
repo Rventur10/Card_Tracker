@@ -11,6 +11,9 @@ import java.util.Optional;
 @Repository
 public interface SetRepository extends JpaRepository<Card_Set, String> {
 
+    // ADD THIS METHOD - Find by set ID
+    Optional<Card_Set> findBySetId(String setId);
+
     // Exact set name match
     Optional<Card_Set> findByName(String name);
 
@@ -19,7 +22,7 @@ public interface SetRepository extends JpaRepository<Card_Set, String> {
     List<Card_Set> findByNameContainingIgnoreCase(@Param("nameFragment") String nameFragment);
 
     // All sets ordered A-Z
-
+    List<Card_Set> findAllByOrderByNameAsc();
 
     // Sets containing a specific card (by Pokemon name)
     @Query("SELECT DISTINCT c.cardSet FROM Card c WHERE c.pokemon.name = :pokemonName")

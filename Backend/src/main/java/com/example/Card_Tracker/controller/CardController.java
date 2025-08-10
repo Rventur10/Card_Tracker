@@ -45,13 +45,13 @@ public class CardController {
     public ResponseEntity<List<CardDataDTO>> getCardsBySet(@PathVariable String setId) {
         try {
             List<CardDataDTO> cards = pokemonClient.getCardsBySet(setId);
+            pokemonClient.cardProcess(cards);
             return ResponseEntity.ok(cards);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
     
-    // NEW: Get all available sets from Pokemon TCG API (uses your Kotlin service)
     @GetMapping("/sets")
     public ResponseEntity<List<CardDataDTO.CardSetDTO>> getAllSets() {
         try {

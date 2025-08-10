@@ -28,6 +28,7 @@ public class PokemonTcgService {
     
     private final RestTemplate restTemplate;
     private final String cardBaseUrl = "https://api.pokemontcg.io/v2/cards";
+    private final String cardSetUrl = "https://api.pokemontcg.io/v2/cards?q=set.id:";
     private final String setBaseUrl = "https://api.pokemontcg.io/v2/sets";
     
     @Value("${POKEMON_TCG_API_KEY}")

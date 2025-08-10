@@ -19,16 +19,17 @@ export interface PokemonCard {
   providedIn: 'root'
 })
 export class PokemonService {
+  private baseUrl = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) { }
 
   getSets(): Observable<PokemonSet[]> {
-    return this.http.get<PokemonSet[]>('/cards/sets');
+    return this.http.get<PokemonSet[]>(`${this.baseUrl}/cards/sets`);
   }
 
 
   getCardsBySet(setId: string): Observable<PokemonCard[]> {
-    return this.http.get<PokemonCard[]>(`/cards/set/${setId}`);
+    return this.http.get<PokemonCard[]>(`${this.baseUrl}/cards/set/${setId}`);
   }
 
   
